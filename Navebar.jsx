@@ -17,12 +17,12 @@ function Nav({profile,onOpenProfile,onGetStarted,onNavigate}) {
 <button type="button" className="btn btn-primary rounded-pill" onClick={onGetStarted}>
   Get Started
 </button>
-<ul className="nav-links">
-    <li><a href="#home">home</a></li>
-<li><a href="#home">Dashboard</a></li>
-<li><a href="#home">Symptons</a></li>
-<li><a href="#home">Profile</a></li>
-</ul></div>
+</div>
+<div className="nav-links d-flex gap-3 order-md-2 mx-md-4 mt-2 mt-md-0">
+    <li><a href="#home" className='nav-links text-secondary' onClick={(e)=>{e.preventDefault(); onNavigate("home")}}>home</a></li>
+<li><a href="#dashboard" className='nav-links text-secondary' onClick={(e)=>{e.preventDefault(); onNavigate("dashboard")}}>Dashboard</a></li>
+<li><a href="#about" className='nav-links text-secondary' onClick={(e)=>{e.preventDefault(); onNavigate("about")}}>Profile</a></li>
+</div>
 </div>
   </nav>
 
