@@ -46,7 +46,42 @@ function Dashboard({profile,history,onOpenHistory,onGetStarted}) {
           <h5 className="text-secondary small mb-0">recent history</h5>
           <button className="btn-link btn-sm text-decoration-none btn" type="button" onClick={onOpenHistory}>....view all</button>
         </div>
-      
+      {history.length===0?(
+        <div className="dahsboar-stat-card text-center text-secondary small">
+
+          No History Detected. Tap new check in to get started.
+        </div>
+      ):(
+        <ul className="list-group">
+          {
+          history.slice(0,4).map(e=>(
+            <li 
+            key={e.id}
+            className={
+            `list-group-item d-flex justify-content-between align-items-center border-star border-4 ${
+              e.insight.urgency==="urgent"? "border-danger"
+              :e.insight.urgency==="caution"? "border-warning"
+              :"boder-success"
+            }`
+            }
+            >
+<div>
+
+</div>
+<span className={
+  `badge ${
+     e.insight.urgency==="urgent"? "text-bg-danger"
+              :e.insight.urgency==="caution"? "text-bg-warning"
+              :"text-bg-success"
+  }`
+}>
+  {e.insight.urgency}
+</span>
+            </li>
+          ))
+          }
+        </ul>
+      )}
       </div>
     {/* </div> */}
    </section>
