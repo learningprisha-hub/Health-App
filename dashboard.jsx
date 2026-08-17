@@ -66,6 +66,11 @@ function Dashboard({profile,history,onOpenHistory,onGetStarted}) {
             }
             >
 <div>
+<p className="fw-bold small mb-0">{e.insight.headline}</p>
+<p className="text-secondary small mb-0">
+  {new Date(e.date).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} &middot;{' '}
+                    {e.temperature.toFixed(1)}°C &middot; {e.heartRate} bpm
+</p>
 
 </div>
 <span className={
