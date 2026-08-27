@@ -35,12 +35,30 @@ function handleResetData(){
   setshowprofile(false)
   setcheckwindow(null)
 }
-  return (
+function scrollToSection(id){
+  document.getElementById(id)?.scrollIntoView({behavior:"smooth"})
+
+
+}
+const latestEntry=state.history[0]
+const latestvitals=latestEntry?{symptoms:latestEntry.symptoms,mood:latestEntry.mood,temperature:latestEntry.temperature,heartRate:latestEntry.heartRate}
+:null
+return (
     <div className="">
 
     
-    <Nav/>
-    <Dashboard/>
+    <Nav
+    profile={state.profile}
+    onOpenProfile={()=>setshowprofile(true)}
+    onGetStarted={()=>setcheckwindow("check")}
+    onNavigate={scrollToSection}
+    />
+    <Dashboard
+     profile={state.profile}
+     history={state.history}
+     onOpenHistory={()=>setcheckwindow("history")}
+     onGetStarted={()=>setcheckwindow("check")}
+    />
     <About/>
     </div>
    
