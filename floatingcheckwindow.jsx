@@ -3,7 +3,7 @@ import { SYMPTOMS, MOODS, AVATARS } from "./sypmtomchecker";
 import {getHealthInsight} from "../logic/healthlogic"
 import Buddyavatar from "./Buddyavatar"
 import AdviseCard from "./advisecard";
-
+import { askGemini } from "../utils/gemini";
 export default function Floatingcheckwindow({onClose,
   initialTab = 'check',
   profile,
@@ -54,5 +54,27 @@ function resetCheck() {
     setGeminiError('')
     setStep('form')
   }
-  
+  async function askGeminiformore() {
+    setGeminiLoading(true)
+    setGeminiError("")
+    try{
+    const reply=await askGemini({
+        apikey:geminiSettings.apikey,
+     model:geminiSettings.model,
+    message: 'Using the check-in parameters below, write a short, kid-friendly explanation of what might be going on ' +
+
+          "and 1-2 gentle everyday wellness tips. Do not diagnose. If anything looks concerning, say to tell a grown-up.",
+          vitals:{symptoms,mood,temperature,heartRate}   
+    }) 
+    setGeminiText(reply)
+    }
+    catch(error){
+        setGeminiError(error.message ||
+            "could not reach gemini"
+        )
+    }
+    finally{
+        setGeminiLoading(false)
+    }
+  }
   }
