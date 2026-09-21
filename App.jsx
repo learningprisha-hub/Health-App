@@ -4,6 +4,8 @@ import './App.css'
 import Dashboard from './components/dashboard'
 import About from './components/About'
 import FloatingCheckWindow from './components/floatingcheckwindow'
+import Hero from './components/hero'
+import Footer from './components/footer'
 import { clearState, loadGeminiSettings, loadState, saveGeminiSettings, saveState } from './utils/storage'
 function defaultstate(){
   return {profile:null, history:[]}
@@ -51,9 +53,10 @@ return (
     <Nav
     profile={state.profile}
     onOpenProfile={()=>setshowprofile(true)}
-    onGetStarted={()=>setcheckwindow("check")}
+    onGetStarted={()=>{setcheckwindow("check");console.log(checkWindow)}}
     onNavigate={scrollToSection}
     />
+    <Hero  onGetStarted={()=>{setcheckwindow("check");console.log(checkWindow)}} />
     <Dashboard
      profile={state.profile}
      history={state.history}
@@ -61,6 +64,7 @@ return (
      onGetStarted={()=>setcheckwindow("check")}
     />
     <About/>
+    <Footer/>
     {checkWindow && (
         <FloatingCheckWindow
           initialTab={checkWindow}

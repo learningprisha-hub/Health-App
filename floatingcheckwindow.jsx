@@ -85,6 +85,7 @@ export default function FloatingCheckWindow({
 
   return (
     <div className="floating-overlay" onClick={onClose}>
+      {console.log("Hello")}
       <div className="floating-window" onClick={(e) => e.stopPropagation()}>
         <div className="d-flex justify-content-between align-items-center border-bottom p-3">
           <div className="d-flex gap-2">
