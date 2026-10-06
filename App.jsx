@@ -6,6 +6,9 @@ import About from './components/About'
 import FloatingCheckWindow from './components/floatingcheckwindow'
 import Hero from './components/hero'
 import Footer from './components/footer'
+import ProfileSettings from './components/profile'
+import ChatWidget from './components/chatwidget'
+import HealthImportance from "./components/healthimportance"
 import { clearState, loadGeminiSettings, loadState, saveGeminiSettings, saveState } from './utils/storage'
 function defaultstate(){
   return {profile:null, history:[]}
@@ -57,6 +60,7 @@ return (
     onNavigate={scrollToSection}
     />
     <Hero  onGetStarted={()=>{setcheckwindow("check");console.log(checkWindow)}} />
+      <HealthImportance/>
     <Dashboard
      profile={state.profile}
      history={state.history}
