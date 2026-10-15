@@ -15,7 +15,7 @@ function defaultState(){
   return {profile:null, history:[]}
 }
 function App() {
-const [state, setState] = useState(null)
+const [state, setState] = useState(defaultState())
 // const [geminiSettings,setgeminisettings]=useState(()=>loadGeminiSettings())
 const [checkWindow,setCheckWindow]=useState(null)
 const [showProfile,setShowProfile]=useState(false)
@@ -170,10 +170,29 @@ return (
           onSetProfile={handleSetProfile}
           history={state.history}
           onSaveCheckIn={handleSaveCheckIn}
-          geminiSettings={geminiSettings}
-          onClose={() => setcheckwindow(null)}
+        
+          onClose={() => setCheckWindow(null)}
         />
       )}
+      {showProfile && (
+        <ProfileSettings
+          user={user}
+          profile={state.profile}
+          onClose={() => setShowProfile(false)}
+          onSaveProfile={handleSetProfile}
+          onResetData={handleResetData}
+          onLogout={handleLogout}
+        />
+      )}
+
+      {showLogin && (
+        <LoginWindow
+          initialMode={loginMode}
+          onClose={() => { setShowLogin(false); setPendingAction(null) }}
+          onSuccess={handleAuthSuccess}
+        />
+      )}
+      <ChatWidget latestVitals={latestvitals}></ChatWidget>
     </div>
    
   )
